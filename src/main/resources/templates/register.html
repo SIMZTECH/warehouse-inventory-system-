@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse inventory || register</title>
+    <link rel="stylesheet"  href="/bootstrap/css/bootstrap.min.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+</head>
+<body>
+    <main class="vw-100 vh-100 d-flex justify-content-center align-items-center">
+        <form class="border p-4" th:action="@{/register}" method="post" th:object="${user}">
+          <div th:if="${param.Success}">
+            <div class="alert alert-success" role="alert">
+              user successfully registered. Click <a href="/login">here to login </a>
+            </div>              
+          </div>
+          <div th:if="${param.errorEmail}">
+            <div class="alert alert-danger" role="alert">
+              User Already Exists!
+            </div>              
+          </div>
+            <legend>Register</legend>
+            <div class="mb-3 row">
+                <label for="firstName" class="col-form-label">First name</label>
+                <div class="col-12">
+                  <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Enter first name..." required>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="LastName" class="col-form-label">Last name</label>
+                <div class="col-12">
+                  <input type="text" class="form-control" id="LastName" th:field="*{lastName}" placeholder="Enter Last name..." required>
+                </div>
+              </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-form-label">Email</label>
+                <div class="col-12">
+                  <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email..." required>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="password" class="col-form-label">Password</label>
+                <div class="col-12">
+                  <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Enter password..." required>
+                </div>
+              </div>
+
+             
+
+              <div class="mb-3 row">
+                <button class="btn btn-primary">Register</button>
+              </div>
+        </form>
+    </main>
+</body>
+</html>

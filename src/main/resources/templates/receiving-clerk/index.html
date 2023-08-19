@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+  <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <title>Warehouse inventory || receiving</title>
+</head>
+
+<body style="height: 100vh;">
+  <div th:replace="~{fragments/header :: header}">Header</div>
+  <div class="container-fluid">
+    <div class="row">
+      <nav th:replace="~{fragments/nav :: receiving-nav}">AdminNav</nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 98vh; overflow-y: auto;">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Recieving Clerk</h1>
+
+        </div>
+
+        <div  th:if="${param.Success}" class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div id="liveToast" class="toast text-bg-success" data-bs-show="true" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+             
+              <strong class="me-auto">purchase order confirmed</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body text-uppercase">
+              account payable notified
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-uppercase text-success">PRODUCTS WAITING FOR CONFIRMATION!!</h2>
+        <div class="table-responsive small">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Order Id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Type</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody th:object="${employees}">
+
+              <tr th:each="product : ${unverifiedProducts}">
+                <td th:text="${product.id}">id</td>
+                <td th:text="${product.product.name}">FirstName</td>
+                <td th:text="${product.productType}">LastName</td>
+                <td colspan="2">
+                  <a th:href="@{/receivingClerk/confirm/{id}(id=${product.id})}">
+                  <button class="btn btn-success">confirm</button></td>
+                </a>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+
+  </div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', ()=>{
+        const toastLiveExample = document.getElementById('liveToast')
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+
+        console.log(toastBootstrap);
+
+        toastBootstrap.show();
+      })
+    </script>
+</body>
+
+</html>

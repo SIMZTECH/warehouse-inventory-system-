@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+  <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/js/dashboard.js" defer></script>
+  <title>Warehouse inventory || admin</title>
+</head>
+
+<body style="height: 100vh;">
+  <div th:replace="~{fragments/header :: header}">Header</div>
+  <div class="container-fluid">
+    <div class="row">
+      <nav th:replace="~{fragments/nav :: admin-nav}">AdminNav</nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 100%; overflow-y: auto;">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2 text-uppercase">Add product</h1>
+
+        </div>
+
+        <form class="border p-4" th:action="@{/admin/add-product-db}" method="post" th:object="${product}">
+
+          <div th:if="${param.success}">
+            <div class="alert alert-success" role="alert">
+              Product added Successfully 😀
+            </div>
+          </div>
+
+          <div th:if="${param.Error}">
+            <div class="alert alert-danger" role="alert">
+              Failed to add product🥺
+            </div>
+          </div>
+          <!-- <legend>Regi</legend> -->
+          <div class="mb-3 row">
+            <label for="name" class="col-form-label">Product Name</label>
+            <div class="col-12">
+              <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Enter product name..."
+                required>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="quantity" class="col-form-label">Quantity</label>
+            <div class="col-12">
+              <input type="number" class="form-control" id="quantity" th:field="*{quantity}" min="0"
+                placeholder="Enter quantity..." required>
+            </div>
+          </div>
+         
+          <div class="mb-3 row">
+            <label for="price" class="col-form-label">Price</label>
+            <div class="col-12">
+              <input type="number" class="form-control" id="quantity" th:field="*{price}" min="0"
+                placeholder="Enter price..." required>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="locationName" class="col-form-label">Location Name</label>
+            <div class="col-12">
+              <select class="form-select" th:field="*{locationName}" id="locationName" placeholder="select role..."
+                required>
+                <option value="CLOTHING">Clothing</option>
+                <option value="ACCESSORIES">Accessories</option>
+                <option value="ELECTRONICS">Electronic</option>
+                <option value="AUTO_SPARES">Auto spares</option>
+                <option value="BUILDING_EQUIPMENT">Building equipment</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <button class="btn btn-primary">Add Product</button>
+          </div>
+        </form>
+
+      </main>
+    </div>
+
+
+  </div>
+  <script src="/js/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
+    crossorigin="anonymous"></script>
+    <script>
+      const productType = document.getElementById('productType');
+
+      productType.addEventListener('change', (e)=>{
+        const description = document.getElementById('description');
+        console.log(productType.value);
+        if(productType.value === "NEW_STOCK"){
+          description.parentElement.parentElement.classList.add('d-none');
+        }else {
+          description.parentElement.parentElement.classList.remove('d-none');
+        }
+      })
+    </script>
+</body>
+
+</html>

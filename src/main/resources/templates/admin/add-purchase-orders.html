@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+  <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/js/dashboard.js" defer></script>
+  <title>Warehouse inventory || admin</title>
+</head>
+
+<body style="height: 100vh;">
+  <div th:replace="~{fragments/header :: header}">Header</div>
+  <div class="container-fluid">
+    <div class="row">
+      <nav th:replace="~{fragments/nav :: admin-nav}">AdminNav</nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 100%; overflow-y: auto;">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2 text-uppercase">Add purchase order</h1>
+
+        </div>
+
+        <form class="border p-4" th:action="@{/admin/add-purchase-orders-db}" method="post" th:object="${purchaseOrder}">
+
+          <div th:if="${param.success}">
+            <div class="alert alert-success" role="alert">
+              Product added Successfully 😀
+            </div>
+          </div>
+
+          <div th:if="${param.Error}">
+            <div class="alert alert-danger" role="alert">
+              Failed to add product🥺
+            </div>
+          </div>
+          <!-- <legend>Regi</legend> -->
+          <div class="mb-3 row">
+            <label for="quantity" class="col-form-label">Quantity</label>
+            <div class="col-12">
+              <input type="number" class="form-control" id="quantity" min="0" th:field="*{Quantity}"
+                placeholder="Enter Quantity..." required>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="unitPrice" class="col-form-label">unit Price</label>
+            <div class="col-12">
+              <input type="number" min="0" class="form-control" id="unitPrice" th:field="*{unitPrice}"
+                placeholder="Enter unit price..." />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="totalPrice" class="col-form-label">totalPrice</label>
+            <div class="col-12">
+              <input type="number" min="0" class="form-control" id="totalPrice" th:field="*{totalPrice}" value="0" readonly />
+            </div>
+          </div> 
+          <div class="mb-3 row">
+            <label for="productType" class="col-form-label">Product Type</label>
+            <div class="col-12">
+              <select class="form-select" id="productType" th:field="*{productType}" placeholder="Enter product type..."
+                required>
+                <option value="NEW_STOCK">new stock</option>
+                <option value="RETURNED_STOCK">returned stock</option>
+                <option value="CANCELLED_STOCK">cancelled stock</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="productId" class="col-form-label">product</label>
+            <div class="col-12">
+              <select class="form-select" th:field="*{productId}" id="productId" placeholder="select product..."
+                required>
+                <option th:each="product : ${products}" th:text="${product.name}" th:value="${product.id}">product</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3 row">
+            <button class="btn btn-primary">Add Purchase Order</button>
+          </div>
+        </form>
+
+      </main>
+    </div>
+
+
+  </div>
+  <script src="/js/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
+    crossorigin="anonymous"></script>
+    <script>
+      const unitPrice = document.getElementById("unitPrice");
+      const quantity = document.getElementById("quantity");
+      const totalPrice = document.getElementById("totalPrice");
+
+      function calculateTotal(){
+        const total = +unitPrice.value * +quantity.value;
+         totalPrice.value = total;
+      }
+      
+      unitPrice.addEventListener('change', calculateTotal);
+      quantity.addEventListener('change', calculateTotal);
+    </script>
+</body>
+
+</html>

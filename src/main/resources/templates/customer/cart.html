@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/shopping-cart.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <title>Warehouse inventory || customer</title>
+</head>
+
+<body style="height: 100vh;">
+    <div th:replace="~{fragments/header :: header}">Header</div>
+    <div class="container-fluid">
+        <div class="row">
+            <nav th:replace="~{fragments/nav :: customer-nav}">customerNav</nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 98vh; overflow-y: auto;">
+                <div th:if="${param.Success}" class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast text-bg-success" data-bs-show="true" role="alert" aria-live="assertive"
+                      aria-atomic="true">
+                      <div class="toast-header">
+          
+                        <strong class="me-auto">Order Successfully Placed</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                      </div>
+                      <div class="toast-body text-uppercase">
+                        Waiting for Confirmation
+                      </div>
+                    </div>
+                  </div>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">View Cart</h1>
+                </div>
+
+                  <!-- create the cords dynamically -->
+                  <div class="custom-card">
+                    <div class="row">
+                        <div class="col-md-8 cart">
+                            <div class="title">
+                                <div class="row">
+                                    <div class="custom-col col"><h4><b>Shopping Cart</b></h4></div>
+                                    <div id="items-number" class="custom-col col align-self-center text-right text-muted"></div>
+                                </div>
+                            </div>
+                            <div id="cart-List">
+                                <!-- Content comes from backend dynamically -->
+
+                            </div>    
+                        </div>
+                        <div class="col-md-4 custom-summary">
+                            <div><h5><b>Summary</b></h5></div>
+                            <hr>
+                            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                                <div class="custom-col col">TOTAL PRICE</div>
+                                <div id="total-cost" class="custom-col col text-right">&euro; 137.00</div>
+                            </div>
+                            <form id="checkout-form" th:action="@{/customer/post-order-db}" method="post" th:object="${Confirm}">
+                                <button class="btn">CHECKOUT</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/js/cart.js"></script>
+</body>
+
+</html>

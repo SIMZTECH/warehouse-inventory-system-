@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="/css/dashboard.css">
+    <link rel="stylesheet"  href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/js/dashboard.js" defer></script>
+    <title>Warehouse inventory || admin</title>
+</head>
+<body style="height: 100vh;">
+    <div th:replace="~{fragments/header :: header}">Header</div>
+    <div class="container-fluid">
+        <div class="row">
+            <nav th:replace="~{fragments/nav :: admin-nav}">AdminNav</nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 100%; overflow-y: auto;">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                  <h1 class="h2">REGISTER EMPLOYEEE</h1>
+                  
+                </div>
+          
+                <form class="border p-4" th:action="@{/admin/add-employee-db}" method="post" th:object="${user}">
+
+                    <div th:if="${param.success}">
+                      <div class="alert alert-success" role="alert">
+                        Employee Registered Successfully
+                      </div> 
+                    </div>
+
+                    <div th:if="${param.errorEmail}">
+                      <div class="alert alert-danger" role="alert">
+                        Employee Already Exists!
+                      </div>      
+                    </div>
+                      <!-- <legend>Regi</legend> -->
+                      <div class="mb-3 row">
+                          <label for="firstName" class="col-form-label">First name</label>
+                          <div class="col-12">
+                            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="Enter first name..." required>
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label for="LastName" class="col-form-label">Last name</label>
+                          <div class="col-12">
+                            <input type="text" class="form-control" id="LastName" th:field="*{lastName}" placeholder="Enter Last name..." required>
+                          </div>
+                        </div>
+                      <div class="mb-3 row">
+                          <label for="email" class="col-form-label">Email</label>
+                          <div class="col-12">
+                            <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email..." required>
+                          </div>
+                        </div>
+                        <div class="mb-3 row">
+                          <label for="password" class="col-form-label">Password</label>
+                          <div class="col-12">
+                            <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="Enter password..." required>
+                          </div>
+                        </div>
+          
+                        <div class="mb-3 row">
+                          <label for="role" class="col-form-label">Role</label>
+                          <div class="col-12">
+                            <select type="password" class="form-select" th:field="*{role}" id="password" placeholder="select role..." required>
+                                <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                                <option value="ROLE_STOCK">ROLE_STOCK</option>
+                                <option value="ROLE_RECEIVER">ROLE_RECEIVER</option>
+                                <option value="ROLE_SHIPPER">ROLE_SHIPPER</option>
+                                <option value="ROLE_FULFILLER">ROLE_FULFILLER</option>
+                              </select>
+                          </div>
+                        </div>
+          
+                        <div class="mb-3 row">
+                          <button class="btn btn-primary">Register</button>
+                        </div>
+                  </form>
+                
+              </main>
+        </div>
+
+        
+    </div>
+    <script src="/js/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
+</body>
+</html>

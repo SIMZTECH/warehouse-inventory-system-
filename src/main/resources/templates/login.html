@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse inventory</title>
+    <link rel="stylesheet"  href="/bootstrap/css/bootstrap.min.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+</head>
+<body>
+ 
+    <main class="vw-100 vh-100 d-flex justify-content-center align-items-center">
+        <form class="border p-4" th:action="@{/login}" method="post">
+          <div th:if="${param.logout}">
+            <div class="alert alert-warning" role="alert">
+              you have been logged out
+            </div>              
+          </div>
+
+          <div th:if="${param.error}">
+            <div class="alert alert-danger" role="alert">
+              invalid Email or Pasword
+            </div>              
+          </div>
+
+            <legend>Log In</legend>
+            <div class="mb-3 row">
+                <label for="email" class="col-form-label">Email</label>
+                <div class="col-12">
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter email..." required autofocus="autofocus">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="password" class="col-form-label">Password</label>
+                <div class="col-12">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Enter password..." required autofocus="autofocus">
+                </div>
+              </div>
+
+              <div class="mb-2">
+
+                <a href="/register">Create account if you do not have one?</a>
+              </div>
+              <div class="mb-3 row">
+                <button type="submit" class="btn btn-primary">Log in</button>
+              </div>
+        </form>
+    </main>
+</body>
+</html>

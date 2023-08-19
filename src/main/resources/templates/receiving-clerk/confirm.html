@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+  <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <script src="/js/dashboard.js" defer></script>
+  <title>Warehouse inventory || receiving</title>
+</head>
+
+<body style="height: 100vh;">
+  <div th:replace="~{fragments/header :: header}">Header</div>
+  <div class="container-fluid">
+    <div class="row">
+      <nav th:replace="~{fragments/nav :: receiving-nav}">AdminNav</nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 98vh; overflow-y: auto;">
+        <section style="display: flex; justify-content: center; width: 100%; margin-top: 4rem; ">
+          <div class="card" style="flex: 1;">
+            <div class="card-body ">
+
+
+              <span class="text-success card-title fs-2">Purchase Order Summary</span>
+              <div class="mb-3">
+                <hr class="new1">
+              </div>
+
+              <div class="d-flex justify-content-between fs-3">
+                <span class="font-weight-bold text-capitalize"> Quantity</span>
+                <span class="text-muted" th:text="${purchaseOrder.Quantity}">5</span>
+              </div>
+
+              <div class="d-flex justify-content-between fs-3">
+                <span class="font-weight-bold text-capitalize">Unit Price</span>
+                <span class="text-muted" th:text="${purchaseOrder.unitPrice}">5</span>
+              </div>
+
+
+              <div class="d-flex justify-content-between fs-3">
+                <span class="font-weight-bold text-capitalize">Total Price</span>
+                <span class="text-muted" th:text="${purchaseOrder.totalPrice}">5</span>
+              </div>
+
+              <div class="d-flex justify-content-between fs-3">
+                <span class="font-weight-bold text-capitalize">product name</span>
+                <span class="text-muted" th:text="${purchaseOrder.product.name}">5</span>
+              </div>
+
+
+              <div class="d-flex justify-content-between fs-3">
+                <span class="font-weight-bold text-capitalize">product Type</span>
+                <span class="text-muted" th:text="${purchaseOrder.productType}">5</span>
+              </div>
+
+
+
+              <div class="text-center mt-5">
+                <form  th:action="@{/receivingClerk/comfirm-db}" method="post" th:object="${confirm}">
+
+                  <input type="hidden" th:field="*{id}" id="id"  />
+                  <button class="btn btn-primary">Confirm</button>
+
+                </form>
+
+
+
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+      </main>
+    </div>
+
+
+  </div>
+  <script src="/js/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG"
+    crossorigin="anonymous"></script>
+
+    <script>
+
+      /***
+       * @type {HTMLInputElement}
+       **/
+      const id = document.getElementById('id');
+
+
+      window.addEventListener('DOMContentLoaded', (e)=>{
+       console.log(location.pathname);
+       const paths= location.pathname.split('/');
+
+        id.value = paths[paths.length - 1];
+      })
+
+
+    </script>
+</body>
+
+</html>

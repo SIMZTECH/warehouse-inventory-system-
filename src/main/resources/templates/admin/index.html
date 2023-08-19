@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="/css/dashboard.css">
+    <link rel="stylesheet"  href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/js/dashboard.js" defer></script>
+    <title>Warehouse inventory || admin</title>
+</head>
+<body style="height: 100vh;">
+    <div th:replace="~{fragments/header :: header}">Header</div>
+    <div class="container-fluid">
+        <div class="row">
+            <nav th:replace="~{fragments/nav :: admin-nav}">AdminNav</nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 100%; overflow-y: auto;">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                  <h1 class="h2">Dashboard</h1>
+                  
+                </div>
+          
+                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+          
+                <h2>LIST OF EMLOYEES</h2>
+                <div class="table-responsive small">
+                  <table class="table table-striped table-sm">
+                    <thead>
+                      <tr>
+                        <th scope="col">EmployeeID</th>
+                        <th scope="col">Employee First Name</th>
+                        <th scope="col">Employee Last Name</th>
+                        <th scope="col">Email</th>
+                       <th scope="col">Role</th>
+                      </tr>
+                    </thead>
+                    <tbody th:object="${employees}">
+
+                      <tr th:each="employee : ${employees}">
+                        <td th:text="${employee.id}">id</td>
+                        <td th:text="${employee.firstName}">FirstName</td>
+                        <td th:text="${employee.lastName}">LastName</td>
+                        <td th:text="${employee.email}">Email</td>
+                        <td th:text="${employee.role.name}">RoleName</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </main>
+        </div>
+
+        
+    </div>
+    <script src="/js/chart.umd.min.js" integrity="sha384-gdQErvCNWvHQZj6XZM0dNsAoY4v+j5P1XDpNkcM3HJG1Yx04ecqIHk7+4VBOCHOG" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+  <!-- admin side nav -->
+  <div th:fragment="admin-nav" class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary ">
+    <div class="offcanvas-lg offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+      aria-labelledby="sidebarMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/admin/">
+              <i class="bi bi-houses-fill"></i>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/admin/add-employee">
+              <i class="bi bi-person-add"></i>
+              Add Employee
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/admin/add-purchase-orders">
+              <i class="bi bi-cart4"></i>
+              Add Purchase Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/admin/add-product">
+              <i class="bi bi-bag-heart-fill"></i>
+              Add Product
+            </a>
+          </li>
+
+        </ul>
+
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+          <span>Saved reports</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <svg class="bi">
+              <use xlink:href="#plus-circle" />
+            </svg>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <svg class="bi">
+                <use xlink:href="#file-earmark-text" />
+              </svg>
+              Orders processing system
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <svg class="bi">
+                <use xlink:href="#file-earmark-text" />
+              </svg>
+              account payable system
+            </a>
+          </li>
+        </ul>
+
+        <hr class="my-3">
+
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <svg class="bi">
+                <use xlink:href="#gear-wide-connected" />
+              </svg>
+              Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/logout">
+              <svg class="bi">
+                <use xlink:href="#door-closed" />
+              </svg>
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div th:fragment="receiving-nav" class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary ">
+    <div class="offcanvas-lg offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+      aria-labelledby="sidebarMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/receivingClerk/">
+              <i class="bi bi-houses-fill"></i>
+              Dashboard
+            </a>
+          </li>
+
+        </ul>
+
+
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <svg class="bi">
+                <use xlink:href="#gear-wide-connected" />
+              </svg>
+              Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/logout">
+              <svg class="bi">
+                <use xlink:href="#door-closed" />
+              </svg>
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="stocking-nav" class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary ">
+    <div class="offcanvas-lg offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+      aria-labelledby="sidebarMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/stockingClerk/">
+              <i class="bi bi-houses-fill"></i>
+              Dashboard
+            </a>
+          </li>
+
+
+        </ul>
+
+
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <svg class="bi">
+                <use xlink:href="#gear-wide-connected" />
+              </svg>
+              Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/logout">
+              <svg class="bi">
+                <use xlink:href="#door-closed" />
+              </svg>
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="customer-nav" class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary ">
+    <div class="offcanvas-lg offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+      aria-labelledby="sidebarMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/customer/">
+              <i class="bi bi-houses-fill"></i>
+              Dashboard
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/customer/cart">
+              <i class="bi bi-bag-fill"></i>
+              View Cart <span id="badge" class="badge text-bg-success">0</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/customer/order">
+              <i class="bi bi-bag-fill"></i>
+              View Orders
+            </a>
+          </li>
+
+        </ul>
+
+
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <i class="bi bi-gear-fill"></i>
+              Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/logout">
+              <svg class="bi">
+                <use xlink:href="#door-closed" />
+              </svg>
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="orderFulfilment-nav" class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary ">
+    <div class="offcanvas-lg offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+      aria-labelledby="sidebarMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/OrderFulfilment/">
+              <i class="bi bi-houses-fill"></i>
+              Dashboard
+            </a>
+          </li>
+        </ul>
+
+
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <i class="bi bi-gear-fill"></i>
+              Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2" href="/logout">
+              <svg class="bi">
+                <use xlink:href="#door-closed" />
+              </svg>
+              Sign out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

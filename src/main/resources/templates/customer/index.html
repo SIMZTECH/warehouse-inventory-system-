@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/bootstrap-icons/font/bootstrap-icons.min.css">
+  <script src="/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+  <title>Warehouse inventory || customer</title>
+</head>
+
+<body style="height: 100vh;">
+  <div th:replace="~{fragments/header :: header}">Header</div>
+  <div class="container-fluid">
+    <div class="row">
+      <nav th:replace="~{fragments/nav :: customer-nav}">customerNav</nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="height: 98vh; overflow-y: auto;">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Customer</h1>
+
+        </div>
+
+        <div class="row gap-1">
+          <div th:each="product : ${products}"  class="col-12 col-sm-6 col-lg-2">
+            <div th:id="${product.id}" class="card mb-3">
+              <img src="/images/gen_pic.png" class="card-img-top" alt="product image">
+              <div class="card-body">
+                <h5 class="card-title" th:text="${product.name}">Product title</h5>
+                <p class="card-text" th:text='${"K"+ product.price}'>K450</p>
+                <div class="mb-3">
+                  <label for="quantity">Quantity <span class="text-success" style="font-size: 13px;"  th:if="${product.quantity > 0}">in-stock</span></label>
+                  <input type="number" class="form-control" value="1" name="quantity" id="quantity" min="1" th:max="${product.quantity}">
+                </div>
+                <button  th:data-id="${product.id}" type="button" class="btn btn-primary add-button" style="width: 100%;">Add Cart</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+
+  </div>
+
+  <script src="/js/cart.js"></script>
+</body>
+
+</html>
